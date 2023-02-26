@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Ingresar Competicion</title>
+
+	<link rel="stylesheet" href="./css/estilos.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link
+		href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@700&family=Source+Serif+Pro&display=swap"
+		rel="stylesheet">
+</head>
+
+<body class="container d-flex flex-column justify-content-center align-items-center">
+
+	<main class="d-flex justify-content-center flex-column align-items-center p-3 m-3">
+
+	<div class="d-flex justify-content-center flex-column align-items-center p-3 m-3">
+		<h1 th:if="${competicion.id == null}">Ingresar Competicion</h1>
+		<h1 th:unless="${competicion.id == null}">Editar Competicion</h1>
+		
+		<h2 th:if="${competicion.id == null}">Ingrese los datos de la Competicion.</h2>
+		<h2 th:unless="${competicion.id == null}">Edite los datos de la Competicion.</h2>
+	</div>
+
+		<form th:action="@{/guardarCompeticion}" th:object="${competicion}" method="post"
+			class="d-flex flex-column p-5 g-3 needs-validation m-3">
+			
+			<input type="hidden" th:field="*{id}" th:value="${competicion.id}"/>
+
+			<h4>Solicitud de datos:</h4>
+			<div class="mb-3 form-floating">
+				<input type="text" class="form-control" name="nombre" placeholder="Nombre Jugador:" th:field="*{nombre}"
+					th:errorclass="'form-control alert-danger'" />
+				<small class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}"
+					th:errors="*{nombre}"></small>
+				<label for="nombre" class="form-label p-3">Nombre: </label>
+			</div>
+			<div class="mb-3 form-floating">
+				<input type="text" class="form-control" id="montoPremio" name="montoPremio" placeholder="Premio:" th:field="*{montoPremio}">
+				<small class="form-text text-danger" th:if="${#fields.hasErrors('montoPremio')}"
+					th:errors="*{montoPremio}"></small>
+				<label for="montoPremio" class="form-label p-3">Premio: </label>
+			</div>
+			<div class="mb-3 form-floating">
+				<input type="date" class="form-control" id="fechaInicio" name="fechaInicio" placeholder="Fecha Inicio:" th:field="*{fechaInicio}">
+				<small class="form-text text-danger" th:if="${#fields.hasErrors('fechaInicio')}"
+					th:errors="*{fechaInicio}"></small>
+				<label for="fechaInicio" class="form-label p-3">Fecha Inicio: </label>
+			</div>
+			<div class="mb-3 form-floating">
+				<input type="date" class="form-control" id="fechaFin" name="fechaFin" placeholder="Fecha Final:" th:field="*{fechaFin}">
+				<small class="form-text text-danger" th:if="${#fields.hasErrors('fechaFin')}"
+					th:errors="*{fechaFin}"></small>
+				<label for="fechaFin" class="form-label p-3">Fecha Final: </label>
+			</div>
+
+			<div class="d-flex mb-3">
+				<input type="submit" class="form-control btn-outline-dark me-4" value="Enviar">
+				<input type="reset" class="form-control btn btn-dark" value="Restablecer">
+			</div>
+			
+			<div class="d-flex mb-3 justify-content-center">
+				<a th:href="@{/verCompeticion}" class="btn btn-dark">Cancelar</a>
+			</div>
+
+		</form>
+	</main>
+</body>
+
+</html>

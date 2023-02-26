@@ -1,0 +1,57 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="Content-Type" content="text/html">
+        <title>Jugadores Registrados</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    	<link rel="stylesheet" href="assets/css/styles.css">
+    </head>
+    
+    <body>
+        <div class="container p-4">
+            <center><h2 class="section__title text-white bold">Jugadores Registrados</h2></center><br><br>
+            <table class="table table-dark table-hover"> 
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Numero</th>
+                        <th>Posicion</th>
+                        <th>Club</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+        
+                <tbody>
+                            <tr th:each="jugador: ${listaJugador}">
+                                <td th:text="${jugador.id}"></td>
+                                <td th:text="${jugador.nombre}"> </td>
+                                <td th:text="${jugador.apellido}"> </td>
+                                <td th:text="${jugador.numero}"> </td>
+                                <td th:text="${jugador.posicion}"> </td>
+                                <td th:text="${jugador.club.nombre}"> </td>
+                                <td>
+                                	<a class="btn btn-info btn-xs" th:href="@{'/jugador/editar'+ '/' + ${jugador.id}}" th:text="'editar'"></a>
+                                	&nbsp; &nbsp;
+                                	<a class="btn btn-danger btn-xs" th:href="@{'/jugador/eliminar'+ '/' + ${jugador.id}}" th:text="'eliminar'"></a>
+                                </td>
+                            </tr>
+                
+                 </tbody>
+            </table>
+            <div class="d-flex justify-content-center">
+                <div class="p-3"><br><a th:href="@{/verJugador/formJugador}" class="btn btn-outline-primary">Insertar Jugador</a></div>
+                <div class="p-3"><br><a th:href="@{/inicio}" class="btn btn-outline-success">Inicio</a></div>
+            </div>
+            <div class="col p-3">
+				<a class="btn btn-danger btn-block" th:href="@{verJugador/?format=pdf}">Listado PDF</a>
+			</div>
+         </div>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.slim.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js"></script>
+     </body>
+</html>
