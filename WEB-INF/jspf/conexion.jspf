@@ -1,0 +1,5 @@
+<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
+<%@ page pageEncoding="UTF-8" %>
+
+<sql:setDataSource var="universidad" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost:3306/profesores" user="root" password="" />
+                    
